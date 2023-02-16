@@ -69,31 +69,8 @@ public class UserController {
     return "un utente eliminato  ";
   }
 
-  
-  
-  @PutMapping(
-		  	path = "/{id}",
-		    consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE },
-		    produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }
-		  )
-  public UserRest updateUser(@RequestBody UserDetailsRequestModel userDetails, @PathVariable String id) {
-	  
-	  
-	  
-	  
-	  UserRest returnValue = new UserRest();
-	    
-	    if(userDetails.getFirstName().isEmpty()) throw new UserServiceException(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
-	    
-	    UserDto userDto = new UserDto();
-	    
-
-	    BeanUtils.copyProperties(userDetails, userDto);
-
-	    UserDto createdUser = userService.updateUser(id, userDto);
-
-	    BeanUtils.copyProperties(createdUser, returnValue);
-
-	    return returnValue;
+  @PutMapping
+  public String updateUser() {
+    return "un utente aggiornato ";
   }
 }
